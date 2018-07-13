@@ -6,12 +6,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lab.fadlikadn.advanceandroid.di.Injector;
+import com.lab.fadlikadn.advanceandroid.di.ScreenInjector;
 
 import java.util.UUID;
+
+import javax.inject.Inject;
 
 public class BaseActivity extends AppCompatActivity {
 
     private static String INSTANCE_ID_KEY = "instance_id";
+
+    @Inject ScreenInjector screenInjector;
 
     private String instanceId;
 
@@ -42,5 +47,9 @@ public class BaseActivity extends AppCompatActivity {
         if (isFinishing()) {
             Injector.clearComponent(this);
         }
+    }
+
+    public ScreenInjector getScreenInjector() {
+        return screenInjector;
     }
 }
